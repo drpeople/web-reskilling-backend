@@ -35,7 +35,7 @@ app.get("/posts", async (req, res) => {
 
     res.json(combineData);
   } catch {
-    // put error code
+    res.status(500).send("Server Error");
   }
 });
 
@@ -53,7 +53,9 @@ app.get("/post/:id", async (req, res) => {
     // compine post and photo data
     const result = { ...response1.data, photoUrl: photo ? photo.url : null };
     res.json(result);
-  } catch {}
+  } catch {
+    res.status(500).send("Server Error");
+  }
 });
 
 app.listen(port, () => {
